@@ -7,13 +7,19 @@ const ShirtItemForm = (props)=> {
     
   const ctx = useContext(CartContext)
 
+  const [count , setCount] = useState(1)
+
   const submitHandler = (e) => {
       e.preventDefault()
-      props.onAddToCart()
+      setCount(count+1)
+      const sizeId = e.target.id
+      console.log(sizeId)
+      props.onAddToCart(count )
+
+      setCount(1)
+      
   }
-    
-  
-    
+        
 
     const [countLarge , setCountLarge] = useState(100)
 
@@ -37,9 +43,9 @@ const ShirtItemForm = (props)=> {
 
         <Fragment>
                <form onSubmit={submitHandler}>
-                  <button onClick={largeCount}>Large {countLarge}</button>
-                  <button onClick={mediumCount}>Medium {countMedium}</button>
-                  <button onClick={smallCount}>Small {countSmall}</button>
+                  <button onClick={largeCount} >Large {countLarge}</button>
+                  <button onClick={mediumCount} id = 'medium'>Medium {countMedium}</button>
+                  <button onClick={smallCount} id = 'small'>Small {countSmall}</button>
                 
                </form>
                  
